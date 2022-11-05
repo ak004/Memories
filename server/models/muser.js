@@ -6,7 +6,6 @@ const userSchema = mongoose.Schema({
         type: String,
         require: true
     },
-    
     email: {
         type: String,
         require: true
@@ -15,7 +14,6 @@ const userSchema = mongoose.Schema({
         type: String,
         require: true
     },
-    
     id: {
         type: String,
     },
@@ -23,7 +21,6 @@ const userSchema = mongoose.Schema({
         type: Date,
         default: new Date()
     },
-
 });
 
 const MUser = mongoose.model('MUser', userSchema);
