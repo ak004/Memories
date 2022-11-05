@@ -6,6 +6,7 @@ import decode from 'jwt-decode';
 import memories from '../../images/memories-Logo.png';
 import memoriesText from '../../images/memories-Text.png';
 import useStyles from './styles'
+import storiess from "../../images/Capture-removebg-preview.png";
 
 
 const Navbar = () => {
@@ -40,8 +41,7 @@ const Navbar = () => {
   return (
  <AppBar className={classes.appBar} position="static" color = "inherit">
   <Link to="/" className={classes.brandContainer} >
-    <img src={memoriesText} alt= "icon" height = "45px"/>
-    <img className={classes.image} src={memories} alt = "memories"  height = "40px"/>
+    <img src={storiess} alt= "icon" height = "95px"/>
   </Link>
   <Toolbar className={classes.toolbar} >
       { user ? (

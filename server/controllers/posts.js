@@ -7,6 +7,7 @@ import PostMessage from "../models/postMessage.js";
 
 
     export const getPost = async (req, res) => {
+        console.log("the whole bodddyyy is: ", req.body);
         const { id }  = req.params;
         try {
             const post  = await PostMessage.findById(id);
@@ -20,7 +21,6 @@ import PostMessage from "../models/postMessage.js";
 
     export const getposts = async (req, res) => {
         const { page } = req.query;
-
        try {
         const LIMIT = 8;
         const startIndex = (Number(page) -1 ) * LIMIT;
@@ -30,7 +30,6 @@ import PostMessage from "../models/postMessage.js";
         res.status(200).json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT) });
        } catch (error) {
         res.status(404).json({message: error.message});
-
        }
     }
 

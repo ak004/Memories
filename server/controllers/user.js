@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
-import User from "../models/user.js";
+import MUser from "../models/muser.js";
 
 export const signin = async(req, res) => {
     const { email, password} = req.body;
 
     try {
 
-        const existingUser = await User.findOne({ email });
+        const existingUser = await MUser.findOne({ email });
 
         if(!existingUser) return res.status(404).json({ message: "User doesn't exits."})
         const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
@@ -29,7 +29,7 @@ export const signup = async(req, res) => {
     const { email, password, firstName, lastName, confirmPassword } = req.body;
 
     try {
-        const existingUser = await User.findOne({ email });
+        const existingUser = await MUser.findOne({ email });
         console.log("1");
 
         if(existingUser) return res.status(400).json({ message: "User already exits."})
@@ -40,7 +40,7 @@ export const signup = async(req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        const result = await User.create({ email, password: hashedPassword, name: `${firstName} ${lastName}` })
+        const result = await MUser.create({ email, password: hashedPassword, name: `${firstName} ${lastName}` })
         console.log("4");
 
         const token = jwt.sign({ email: result.email, id: result._id}, "test", { expiresIn: "1h"});
